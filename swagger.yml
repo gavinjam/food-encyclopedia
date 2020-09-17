@@ -1,0 +1,231 @@
+openapi: 3.0.3
+info:
+  description: This XM API is exposed by the XM-UI service on a Xage Manager system over HTTPS.
+  version: 1.0.0
+  title: Food Encyclopedia API
+tags:
+  - name: Food
+    description: Food Data Management
+  - name: Static
+    description: Static Files Management
+servers:
+  - url: https://localhost:8080
+paths:
+  "/food":
+    post:
+      tags:
+        - Food
+      summary: ""
+      description: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FoodRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            access-control-allow-credentials:
+              schema:
+                type: boolean
+              description: "Example: true"
+            access-control-allow-headers:
+              schema:
+                type: string
+              description: "Example: Authorization"
+            access-control-allow-methods:
+              schema:
+                type: array
+                items:
+                  type: string
+              description: "Example: GET, POST, PUT, DELETE, OPTIONS"
+            access-control-allow-origin:
+              schema:
+                type: string
+              description: "Example: https://127.0.0.1:3000"
+            content-length:
+              schema:
+                type: integer
+              description: "Example: 492"
+            content-type:
+              schema:
+                type: string
+              description: "Example: text/plain; charset=utf-8"
+            date:
+              schema:
+                type: string
+                format: date-time
+              description: "Example: Tue, 03 Mar 2020 23:10:22 GMT"
+        "500":
+          description: Internal Server Error
+    get:
+      tags:
+        - Food
+      summary: ""
+      description: ""
+      responses:
+        "200":
+          description: OK
+          headers:
+            access-control-allow-credentials:
+              schema:
+                type: boolean
+              description: "Example: true"
+            access-control-allow-headers:
+              schema:
+                type: string
+              description: "Example: Authorization"
+            access-control-allow-methods:
+              schema:
+                type: array
+                items:
+                  type: string
+              description: "Example: GET, POST, PUT, DELETE, OPTIONS"
+            access-control-allow-origin:
+              schema:
+                type: string
+              description: "Example: https://127.0.0.1:3000"
+            content-length:
+              schema:
+                type: integer
+              description: "Example: 492"
+            content-type:
+              schema:
+                type: string
+              description: "Example: text/plain; charset=utf-8"
+            date:
+              schema:
+                type: string
+                format: date-time
+              description: "Example: Tue, 03 Mar 2020 23:10:22 GMT"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FoodResponse"
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Food
+      summary: ""
+      description: ""
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteFoodRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          headers:
+            access-control-allow-credentials:
+              schema:
+                type: boolean
+              description: "Example: true"
+            access-control-allow-headers:
+              schema:
+                type: string
+              description: "Example: Authorization"
+            access-control-allow-methods:
+              schema:
+                type: array
+                items:
+                  type: string
+              description: "Example: GET, POST, PUT, DELETE, OPTIONS"
+            access-control-allow-origin:
+              schema:
+                type: string
+              description: "Example: https://127.0.0.1:3000"
+            content-length:
+              schema:
+                type: integer
+              description: "Example: 492"
+            content-type:
+              schema:
+                type: string
+              description: "Example: text/plain; charset=utf-8"
+            date:
+              schema:
+                type: string
+                format: date-time
+              description: "Example: Tue, 03 Mar 2020 23:10:22 GMT"
+        "400":
+          description: Bad request, cannot delete Maggi Noodles
+        "500":
+          description: Internal Server Error
+  "/static/":
+    get:
+      tags:
+        - Static
+      summary: ""
+      description: ""
+      responses:
+        "200":
+          description: OK
+          headers:
+            access-control-allow-credentials:
+              schema:
+                type: boolean
+              description: "Example: true"
+            access-control-allow-headers:
+              schema:
+                type: string
+              description: "Example: Authorization"
+            access-control-allow-methods:
+              schema:
+                type: array
+                items:
+                  type: string
+              description: "Example: GET, POST, PUT, DELETE, OPTIONS"
+            access-control-allow-origin:
+              schema:
+                type: string
+              description: "Example: https://127.0.0.1:3000"
+            content-length:
+              schema:
+                type: integer
+              description: "Example: 492"
+            content-type:
+              schema:
+                type: string
+              description: "Example: text/html; charset=utf-8"
+            date:
+              schema:
+                type: string
+                format: date-time
+              description: "Example: Tue, 03 Mar 2020 23:10:22 GMT"
+        "500":
+          description: Internal Server Error
+components:
+  schemas:
+    DeleteFoodRequest:
+      type: array
+      items:
+        type: string
+      example:
+       - "1"
+       - "2"
+    FoodRequest:
+      type: object
+      properties:
+        species:
+          type: string
+          example: noodles
+        description:
+          type: string
+          example: Masla
+    FoodResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        species:
+          type: string
+          example: noodles
+        description:
+          type: string
+          example: Masla

@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  web:
+    image: food_image
+    container_name: food_web
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+  
+  db:
+    image: postgres
+    container_name: food_db
+    ports:
+        - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: food_encyclopedia
+    volumes:
+      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+    networks:
+      - backend
+
+networks:
+  backend:
