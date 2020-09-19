@@ -9,4 +9,4 @@ COPY food-encyclopedia  .
 
 EXPOSE 8080
 
-CMD ["./food-encyclopedia "]
+CMD ["./food-encyclopedia"]

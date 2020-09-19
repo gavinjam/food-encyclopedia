@@ -1,20 +1,22 @@
 #!/bin/bash
 
-cd /Users/gavinjampani/go/src
-# docker-compose stop
+cd ../
+docker-compose stop
+docker rm -f food_web
+docker rm -f food_db
 
-cd /Users/gavinjampani/go/docker
+cd docker
 cp second.Dockerfile Dockerfile
-mv Dockerfile /Users/gavinjampani/go/src
+mv Dockerfile ../
 
-cd /Users/gavinjampani/go/src
+cd ../
 
 # modify docker-compose.yml
 # sed -i -e 's/test/app/g' docker-compose.yml
-# docker exec -it food_web /bin/sh
+# Enter insides a running docker container: docker exec -it food_web /bin/sh
 docker build -f Dockerfile -t food_image .
 # docker run -it --rm --name test-app 
 docker-compose up -d
 # Will need docker-compose stop to stop it
 rm Dockerfile
-rm src
+rm food-encyclopedia

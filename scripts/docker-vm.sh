@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /Users/gavinjampani/go/src
+cd ../
 
 # verify that zip and files do not exist in VM; if they do, then rm them
 
