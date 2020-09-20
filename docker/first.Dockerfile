@@ -11,7 +11,7 @@ RUN go get
 RUN cd /go/src/food-encyclopedia
 # RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 # RUN go build .
-RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -a -tags netgo -ldflags '-w' .
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -a -tags netgo -ldflags '-s -w' .
 # RUN GOOS=linux GOARCH=amd64 go build -o app .
 
 EXPOSE 8080
