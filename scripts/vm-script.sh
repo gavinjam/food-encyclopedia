@@ -12,7 +12,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 sudo docker run hello-world
 
-docker load -i food_image.docker
+sudo docker load -i food_image.docker
 
 sudo docker-compose up -d
 

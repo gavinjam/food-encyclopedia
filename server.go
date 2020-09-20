@@ -27,8 +27,10 @@ func newRouter() *mux.Router {
 }
 
 func main() {
-	// connString := "dbname=food_encyclopedia sslmode=disable"
-	connString := "host=food_db port=5432 user=postgres password=secret dbname=food_encyclopedia sslmode=disable"
+	// For Local Run:
+	connString := "dbname=food_encyclopedia sslmode=disable"
+	// For Docker Run:
+	//connString := "host=food_db port=5432 user=postgres password=secret dbname=food_encyclopedia sslmode=disable"
 	db, err := sql.Open("postgres", connString)
 
 	for err != nil {

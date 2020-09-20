@@ -11,7 +11,11 @@
 <center>
 <h1>Hello Food!</h1>
 
-<p>This page has a light blue background color!</p>
+<p>Food.html allows users to add however many single food items the wish to the table via the form at the bottom. 
+   Users can also select a series of food items from the table to be deleted at once.<br><br>
+   
+   NOTE: Maggi Noodles cannot be deleted from the table as it is a precious food item.
+</p>
 
 <form action="/food" method="delete">
 	<table>
@@ -24,22 +28,22 @@
 		<label>
 		<td><input type="checkbox" id="mycheckbox" value="0"></td>
 		<td>Maggi Noodles</td>
-		<td>Noodles with Masla</td>
+		<td>Noodles with Masala</td>
 		</label>
 		</tr>
 	</table>
-	<input type="submit" name="Submit" onclick="return deleteForm();">
+	<button type="submit" name="Submit" onclick="return deleteForm();">Delete Food Items</button>
 </form>
 
 <form action="/food" method="post">
-	<p style="text-weight: 900">
+	<p>
         Food:
         <input type="text" name="species">
         </br>
         Description:
         <input type="text" name="description">
         </br>
-        <input type="submit" name="Submit">
+        <button type="submit" name="Submit">Add Food Item</button>
     </p>
 </form>
 </center>
