@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food Page</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/styles.css" media="screen"/>
+</head>
+<body>
+
+<a href="../home.html"><button type="button">Home Page</button></a>
+
+<center>
+<h1>Hello Food!</h1>
+
+<p>This page has a light blue background color!</p>
+
+<form action="/food" method="delete">
+	<table>
+		<tr>
+		<th></th>
+		<th>Species</th>
+		<th>Description</th>
+		</tr>
+		<tr>
+		<label>
+		<td><input type="checkbox" id="mycheckbox" value="0"></td>
+		<td>Maggi Noodles</td>
+		<td>Noodles with Masla</td>
+		</label>
+		</tr>
+	</table>
+	<input type="submit" name="Submit" onclick="return deleteForm();">
+</form>
+
+<form action="/food" method="post">
+	<p style="text-weight: 900">
+        Food:
+        <input type="text" name="species">
+        </br>
+        Description:
+        <input type="text" name="description">
+        </br>
+        <input type="submit" name="Submit">
+    </p>
+</form>
+</center>
+
+<script>
+	foodTable = document.querySelector("table")
+	
+	fetch("/food")
+		.then(response => response.json())
+		.then(foodList => {
+			var i = 1
+			foodList.forEach(food => {
+				row = document.createElement("tr")
+
+				newCell = document.createElement("td")
+				input = document.createElement("input")
+				input.setAttribute('type', 'checkbox')
+				input.setAttribute('id', 'mycheckbox' + i)
+				input.setAttribute('value', food.id)
+				console.log(input)
+				
+				species = document.createElement("td")
+				species.innerHTML = food.species
+				
+				description = document.createElement("td")
+				description.innerHTML = food.description
+
+				row.appendChild(newCell).appendChild(input)
+				row.appendChild(species)
+				row.appendChild(description)
+				
+				foodTable.appendChild(row)
+				i++
+			})
+		})
+	
+	function deleteForm() {
+
+		var array = []
+		var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+		for (var i = 0; i < checkboxes.length; i++) {
+			array.push(checkboxes[i].value)
+		}
+
+		fetch('/food', {
+			method: 'DELETE', // or 'PUT'
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(array),
+		})
+		.then(response => response.json())
+		.then(data => {
+		//console.log('Success:', data);
+		location.reload()
+		//setTimeout(function() {
+		    //your code to be executed after 1 second
+			//alert(data.code + ' ' + data.message)
+		//}, 14);
+		alert(data.code + ' ' + data.message)
+		})
+		.catch((error) => {
+		//console.error('Error:', error);
+		alert('Error:', error)
+		});
+
+		return false;
+	}
+	
+	// let submitButton = document.getElementById('deleteForm');
+	// let checkbox = document.getElementById('mycheckbox');
+
+	// submitButton.addEventListener('submit', function(e){
+
+	// 	var array = []
+	// 	var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+	// 	for (var i = 0; i < checkboxes.length; i++) {
+	// 		array.push(checkboxes[i].value)
+	// 	}
+
+
+
+	// });
+	
+</script>
+
+</body>
+</html>
